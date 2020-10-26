@@ -1,14 +1,13 @@
 import {useState } from "react"
-const Square = () => {
+const Square = (props) => {
     
-    const [x, setValue] = useState(null)
     return (
         <div>
             <button
                 style={styledButtons}
-                onClick={() => { setValue('X') }}
+                onClick={() => props.onClick()}
             >
-                {x}
+                {props.value}
             </button>
         </div>
     )

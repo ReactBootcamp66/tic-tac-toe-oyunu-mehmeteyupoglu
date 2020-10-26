@@ -3,13 +3,24 @@ import { Square } from "../components"
 
 const Board = () => {
 
-    const squares = Array(9).fill(true)
+    const squares = Array(9).fill(null)
 
     const [square, setSquare] = useState(squares)
-    console.log(squares)
+    console.log(square)
+
+    const handleClick = (i) => {
+        const newSquare = square.slice()
+        newSquare[i] = 'X'
+        setSquare(newSquare)
+    }
 
     const renderSquare = (i) => {
-        return (<Square value={squares[i]}/>)
+        return (
+            <Square
+            value={square[i]}
+            onClick={() => handleClick(i)}
+            />
+        )
     }
 
     return (
