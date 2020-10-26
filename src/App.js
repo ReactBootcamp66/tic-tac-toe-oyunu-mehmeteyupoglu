@@ -1,5 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
+import {Board, Game, Square} from "./components"
 
 function App() {
   return (
@@ -11,7 +11,9 @@ function App() {
         
       </header>
       <main className="App-main">
-        Hello
+        <Board />
+        
+        <Game />
       </main>
       <footer className="App-footer"> 
         Made with love in Ankara, Turkey
