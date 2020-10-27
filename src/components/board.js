@@ -92,7 +92,7 @@ const styledStatus = {
     margin: '30px 0', 
     padding: '10px 10px', 
     fontSize: '20px', 
-    background: 'rgb(27 48 107)', 
+    background: 'rgb(44 93 191)', 
     borderRadius: '5px', 
     color: 'white',  
     
