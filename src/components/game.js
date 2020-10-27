@@ -1,9 +1,13 @@
 const Game = () => {
     return (
         <div>
-            Game
+            <button >New Game</button>
         </div>
     )
+}
+
+const styledButton = {
+    
 }
 
 export default Game
