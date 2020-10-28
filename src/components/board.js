@@ -1,43 +1,44 @@
 import {useState} from "react"
-import { Square } from "../components"
+import { Square, Game } from "../components"
 
 const Board = () => {
 
     const squares = Array(9).fill(null)
 
     const [square, setSquare] = useState(squares)
-    const [isNext, setNextPlayer] = useState(true)
     console.log(square)
+    const [isNext, setNext] = useState(true)
 
     const handleClick = (i) => {
+        
         const newSquare = square.slice()
-        if (winner(square) || square[i]) {
-            return
+
+        if (selectWinner(square) || square[i]) {
+            return 
         }
         newSquare[i] = isNext ? 'X' : 'O'
         setSquare(newSquare)
-        setNextPlayer(!isNext)
+        setNext(!isNext)
     }
 
+    const resetGame = () => {
+        setSquare(squares)
+        setNext(true)
+    }
     const renderSquare = (i) => {
         return (
-            <Square
-            value={square[i]}
-            onClick={() => handleClick(i)}
-            />
+            <Square value={square[i]} onClick={() => handleClick(i)}/>
         )
     }
 
-     
-
-    const winner = (square) => {
+    const selectWinner = (square) => {
         const checkList = [
             [0, 1, 2], 
             [3, 4, 5], 
             [6, 7, 8], 
             [0, 3, 6], 
             [1, 4, 7], 
-            [2, 5, 8]
+            [2, 5, 8],
             [0, 4, 8], 
             [2, 4, 6]
         ]
@@ -47,19 +48,20 @@ const Board = () => {
             if (square[a] && square[a] === square[b] && square[a] === square[c]) {
                 return square[a]
             }
-            return null
         }
+        return null
     }
 
-    const winningPlayer = winner(square)
-    let status;
+    const winner = selectWinner(square)
+    console.log(winner)
 
-    if (winningPlayer) {
-        status = "Winner:  " + winningPlayer
+    let status = ''
+
+    if (winner) {
+        status = 'Winner: ' + winner
     } else {
-        status = "Next player: " + (isNext ? 'X' : 'O')
+        status = 'Next player: ' + (isNext ? 'X' : 'O')
     }
-
 
     return (
         <div >
@@ -79,7 +81,7 @@ const Board = () => {
                 {renderSquare(7)}
                 {renderSquare(8)}
             </div>
-            
+            <Game onClick={() => resetGame()}/>
         </div>
     )
 }

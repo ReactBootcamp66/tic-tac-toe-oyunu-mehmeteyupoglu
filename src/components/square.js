@@ -1,12 +1,13 @@
-const Square = (props) => {
+const Square = ({onClick, value}) => {
     
     return (
         <div>
             <button
                 style={styledButtons}
-                onClick={() => props.onClick()}
+                onClick={onClick}
+                
             >
-                {props.value}
+                {value}
             </button>
         </div>
     )

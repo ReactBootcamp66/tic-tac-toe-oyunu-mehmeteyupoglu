@@ -8,12 +8,9 @@ function App() {
         <h1>
           Tic Tac Toe
         </h1>
-        
       </header>
       <main className="App-main">
         <Board />
-        
-        <Game />
       </main>
       <footer className="App-footer"> 
         Made with love in Ankara, Turkey

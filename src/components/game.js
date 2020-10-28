@@ -1,7 +1,7 @@
-const Game = () => {
+const Game = ({onClick}) => {
     return (
         <div>
-            <button style={styledButton}>New Game</button>
+            <button style={styledButton} onClick={() => onClick()}>New Game</button>
         </div>
     )
 }
