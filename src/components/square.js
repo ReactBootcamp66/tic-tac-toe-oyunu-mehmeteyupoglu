@@ -4,8 +4,7 @@ const Square = ({onClick, value}) => {
         <div>
             <button
                 style={styledButtons}
-                onClick={onClick}
-                
+                onClick={() => onClick()}
             >
                 {value}
             </button>

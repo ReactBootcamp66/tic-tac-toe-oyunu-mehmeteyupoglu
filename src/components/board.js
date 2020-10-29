@@ -4,31 +4,26 @@ import { Square, Game } from "../components"
 const Board = () => {
 
     const squares = Array(9).fill(null)
-
-    const [square, setSquare] = useState(squares)
-    console.log(square)
     const [isNext, setNext] = useState(true)
+    const [square, setSquare] = useState(squares)
 
-    const handleClick = (i) => {
-        
-        const newSquare = square.slice()
-
-        if (selectWinner(square) || square[i]) {
-            return 
-        }
-        newSquare[i] = isNext ? 'X' : 'O'
-        setSquare(newSquare)
-        setNext(!isNext)
-    }
-
-    const resetGame = () => {
-        setSquare(squares)
-        setNext(true)
-    }
     const renderSquare = (i) => {
         return (
             <Square value={square[i]} onClick={() => handleClick(i)}/>
         )
+    }
+
+    const handleClick = (i) => {
+        const newSquares = square.slice()
+
+        if (winner || square[i]) {
+            return 
+        }
+        
+        newSquares[i] = isNext ? 'X' : 'O'
+        setSquare(newSquares)
+        setNext(!isNext)
+
     }
 
     const selectWinner = (square) => {
@@ -41,7 +36,7 @@ const Board = () => {
             [2, 5, 8],
             [0, 4, 8], 
             [2, 4, 6]
-        ]
+        ]  
 
         for (let i = 0; i < checkList.length; i++){
             const [a, b, c] = checkList[i]
@@ -53,16 +48,19 @@ const Board = () => {
     }
 
     const winner = selectWinner(square)
-    console.log(winner)
 
     let status = ''
-
+        
     if (winner) {
         status = 'Winner: ' + winner
     } else {
         status = 'Next player: ' + (isNext ? 'X' : 'O')
-    }
+        }
 
+    const resetGame = () => {
+        setSquare(squares)
+        setNext(true)
+    }
     return (
         <div >
             <div style={styledStatus} >{status}</div>
@@ -84,7 +82,7 @@ const Board = () => {
             <Game onClick={() => resetGame()}/>
         </div>
     )
-}
+} 
 
 const styledRow = {
     display: 'flex'
